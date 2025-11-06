@@ -1,0 +1,299 @@
+/* --- AURA SYNC: FINAL POLISHED STYLESHEET --- */
+
+/* Global Theme & Variables */
+:root {
+    --bg-darkest: #000000; /* Changed to Black for the terminal */
+    --bg-dark: #3c3c3c;
+    --bg-light: #4a4a4a;
+    --editor-bg: #1f272a; /* New variable for the editor background */
+    --border-color: #5a5a5a;
+    --accent-color: #00979D;
+    --accent-hover: #00c2c9;
+    --text-light: #f1f1f1;
+    --text-dark: #222222;
+    --text-secondary: #a0a0a0;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-darkest);
+    color: var(--text-light);
+    overflow: hidden;
+    user-select: none;
+}
+
+/* Home Page Styles remain the same */
+/* ... (all home page styles) ... */
+
+/* --- IDE Layout --- */
+.ide-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.mainWrap {
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+}
+.editor-and-terminal-wrap {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+}
+.editorWrap {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+}
+.terminalWrap {
+    flex-shrink: 0;
+}
+
+/* --- Resizer Handle --- */
+.resizer {
+    background-color: var(--border-color);
+    height: 5px;
+    cursor: ns-resize;
+    flex-shrink: 0;
+}
+.resizer:hover {
+    background-color: var(--accent-color);
+}
+
+/* --- Advanced Toolbar --- */
+.arduino-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 16px;
+    background-color: var(--bg-dark);
+    border-bottom: 1px solid var(--border-color);
+}
+.toolbar-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-right: 20px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.toolbar-right {
+    margin-left: auto;
+}
+.toolbar-button {
+    background: var(--bg-light);
+    color: var(--text-light);
+    padding: 6px 14px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.toolbar-button:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+.icon-button-only {
+    padding: 8px;
+    font-size: 16px;
+}
+.leaveBtn-toolbar:hover {
+    background: #ff5555;
+    border-color: #ff5555;
+}
+.select-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.select-group select {
+    background: var(--bg-light);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* --- Toolbar Clients (Avatars) - Corrected Alignment --- */
+.toolbar-clients {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    margin-left: 5px;
+    border-left: 1px solid var(--border-color);
+}
+.avatar {
+    border: 2px solid var(--text-secondary);
+    margin-right: 5px; /* Neatly spaced side-by-side */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.avatar:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-hover);
+}
+
+/* --- Editor & Terminal Colors --- */
+.CodeMirror {
+    font-size: 16px;
+    line-height: 1.6;
+    height: 100% !important;
+    background-color: var(--editor-bg); /* New editor background */
+}
+.terminal-container {
+    border-top: 1px solid var(--border-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.terminal-header {
+    background-color: var(--bg-light);
+    padding: 8px 16px;
+    flex-shrink: 0;
+}
+.terminal-content {
+    background-color: var(--bg-darkest); /* Now pure black */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.log-line.success { color: #50fa7b; }
+.log-line.error { color: #ff5555; }
+.log-line.info { color: #8be9fd; }
+.log-line.output { color: #f1fa8c; }
+
+.ai-button {
+    background-color: #6272a4; /* Purple accent for AI */
+    border-color: #6272a4;
+}
+.ai-button:hover {
+     background-color: #bd93f9;
+     border-color: #bd93f9;
+}
+
+.ai-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.ai-modal {
+    background-color: var(--bg-dark); /* Uses existing theme variable */
+    padding: 30px;
+    border-radius: 10px;
+    width: 600px;
+    max-width: 90%;
+    border: 1px solid var(--border-color); /* Uses existing theme variable */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    color: var(--text-light); /* Uses existing theme variable */
+}
+
+.ai-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-secondary); /* Uses existing theme variable */
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.ai-modal-close:hover {
+    color: var(--text-light); /* Uses existing theme variable */
+}
+
+
+.ai-modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-light); /* Uses existing theme variable */
+}
+
+.ai-prompt-input {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid var(--border-color); /* Uses existing theme variable */
+    margin-bottom: 15px;
+    background: var(--bg-light); /* Uses existing theme variable */
+    font-size: 1rem;
+    color: var(--text-light); /* Uses existing theme variable */
+    resize: vertical;
+}
+
+.ai-generate-btn {
+    background: var(--accent-color); /* Uses existing theme variable */
+    color: white;
+    display: block;
+    width: 150px;
+    margin-bottom: 20px;
+    /* Inherits .btn styles, add specific overrides if needed */
+}
+.ai-generate-btn:hover {
+     background: var(--accent-hover); /* Uses existing theme variable */
+}
+.ai-generate-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+.ai-output-area {
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color); /* Uses existing theme variable */
+    padding-top: 20px;
+}
+
+.ai-output-area h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-secondary); /* Uses existing theme variable */
+}
+
+.ai-output-box {
+    background-color: var(--bg-darkest); /* Uses existing theme variable */
+    color: #f1fa8c; /* Match terminal output color */
+    padding: 15px;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color); /* Uses existing theme variable */
+    margin-bottom: 15px;
+}
+
+.ai-copy-btn {
+    background: var(--bg-light); /* Uses existing theme variable */
+    color: var(--text-light); /* Uses existing theme variable */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    /* Inherits .btn styles, add specific overrides if needed */
+}
+.ai-copy-btn:hover {
+    background: var(--accent-color); /* Uses existing theme variable */
+}
