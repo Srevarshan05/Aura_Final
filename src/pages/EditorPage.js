@@ -61,7 +61,7 @@ const EditorPage = () => {
         console.log("--- Code Execution Payload Generated ---");
         console.log("Final JSON String (HTTP Body):", jsonPayloadString);
         console.log("---------------------------------------");
-        const endpoint = 'https://36619af29916.ngrok-free.app/execute'; // Your Ngrok URL
+        const endpoint = 'https://a9455782b7c4.ngrok-free.app/execute'; // Your Ngrok URL
         setHttpOutput('External C++ Runner: Compiling and running code... Please wait.');
         try {
             const response = await fetch(endpoint, {

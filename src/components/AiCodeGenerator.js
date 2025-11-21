@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { FaCopy, FaTimes } from 'react-icons/fa';
 
 // ✅ Correct API endpoint for ngrok + Flask
-const GENERATION_API_URL = 'https://nonspherical-misfeatured-crissy.ngrok-free.dev/generate';
+const GENERATION_API_URL = 'https://castellated-painedly-rosenda.ngrok-free.dev/generate';
 
 const AiCodeGenerator = ({ isOpen, onClose }) => {
     const [prompt, setPrompt] = useState('');

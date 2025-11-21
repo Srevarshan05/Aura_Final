@@ -6,15 +6,10 @@ const { Server } = require('socket.io');
 const ACTIONS = require('./src/Actions');
 
 // 🌟 NEW: Import the serialport library 🌟
-const { SerialPort } = require('serialport'); 
+//const { SerialPort } = require('serialport'); 
 
 const server = http.createServer(app);
-const io = new Server(server, {
-    cors: {
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST'],
-    },
-});
+const io = new Server(server);
 
 app.use(express.static('build'));
 app.use((req, res, next) => {
@@ -41,23 +36,23 @@ function getAllConnectedClients(roomId) {
 /**
  * Lists available serial ports and broadcasts the list to all connected clients.
  */
-function broadcastPortsList() {
-    SerialPort.list().then(ports => {
-        const portPaths = ports.map(p => p.path);
+//function broadcastPortsList() {
+    //SerialPort.list().then(ports => {
+       // const portPaths = ports.map(p => p.path);
         
         // Broadcast the updated list to ALL connected clients
         // The event name 'AVAILABLE_PORTS' is what the client listens for.
-        io.emit('AVAILABLE_PORTS', portPaths);
+       // io.emit('AVAILABLE_PORTS', portPaths);
         
-    }).catch(err => {
-        console.error('Error listing ports:', err);
+    //}).catch(err => {
+        //console.error('Error listing ports:', err);
         // You can emit an error back to clients if needed:
         // io.emit('PORTS_LIST_ERROR', 'Failed to list ports on the server machine.');
-    });
-}
+   // });
+//}
 
 // Start broadcasting ports every 5 seconds (adjust interval as needed)
-setInterval(broadcastPortsList, 5000); 
+//setInterval(broadcastPortsList, 5000); 
 
 // -------------------------------------------------------------
 // 🌟 END NEW: Port Listing Logic 🌟
@@ -67,7 +62,7 @@ io.on('connection', (socket) => {
     console.log('socket connected', socket.id);
 
     // Immediately send the current list of ports to the connecting client
-    broadcastPortsList(); 
+    //broadcastPortsList(); 
 
     socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
         // ... (existing JOIN logic - NO CHANGE) ...
@@ -127,4 +122,4 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+server.listen(PORT, '0.0.0.0', () => console.log(`Listening on port ${PORT}`));
